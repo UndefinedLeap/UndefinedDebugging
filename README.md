@@ -23,10 +23,13 @@ gcc -DPART1 main.c
 ```
 3. Fire-up your debugger, for lldb:
 ```
-lldb ./a.out # Open lldb and load the executable
+# Open lldb and load the executable
+lldb ./a.out
 ...
-(lldb) settings set target.input-path input # Re-direct input file 'input'/'example' to executable
-# set break-points, watch-points, etc
+# Re-direct input file 'input'/'example' to executable
+(lldb) settings set target.input-path input
+# Set break-points, watch-points, etc
+...
 (lldb) run
 ```
 For gdb:
