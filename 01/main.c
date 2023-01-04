@@ -4,7 +4,7 @@ int main1() {
 	int x, y;
 	scanf("%d", &x);
 
-	int c;
+	int c = 0;
 
 	while (scanf("%d", &y) != EOF) {
 		if (y > x)
