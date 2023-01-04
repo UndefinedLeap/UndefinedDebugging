@@ -4,7 +4,7 @@ int main1() {
 	int x, y;
 	scanf("%d", &x);
 
-	int c = 0;
+	int c;
 
 	while (scanf("%d", &y) != EOF) {
 		if (y > x)
@@ -24,10 +24,10 @@ int main2() {
 	scanf("%d", &y);
 	scanf("%d", &z);
 
-	int s = x + y + z;
+	int s;
 	int n;
 
-	int c = 0;
+	int c;
 
 	while (scanf("%d", &n) != EOF) {
 		if (s - x + n > s)
