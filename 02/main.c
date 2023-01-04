@@ -5,6 +5,26 @@
 
 #define INST_SIZE 20
 
+char* truncate_string_before(char* str, char delimiter){
+	char* out_str = malloc(10 * sizeof(char));
+	char cursor = 0;
+	unsigned long len = strlen(str);
+	char found = 0;
+	for (int i = 0; i < len; i++) {
+		if(str[i] == delimiter) found = 1;
+		if(found == 1){
+			out_str[cursor] = str[i];
+			cursor++;
+		}
+	}
+	out_str[cursor] = '\0';
+	return out_str;
+}
+
+int char_to_int(char c){
+	return c - 48;
+}
+
 int main1() {
 	char ins[INST_SIZE];
 
@@ -12,8 +32,8 @@ int main1() {
 	int depth = 0;
 
 	while (fgets(ins, INST_SIZE, stdin) == ins) {
-		char *space = strchr(ins, ' ');
-		int offset = (int) strtol(space + 1, NULL, 10);
+		char *space = truncate_string_before(ins, ' ');
+		int offset = char_to_int(*(space + 1));
 		switch (ins[0]) {
 			case 'f':
 				position += offset;
@@ -28,6 +48,7 @@ int main1() {
 				assert(0 && "Invalid instruction");
 				break;
 		}
+		free(space);
 	}
 
 	printf("%d\n", position * depth);
@@ -43,8 +64,8 @@ int main2() {
 	int aim = 0;
 
 	while (fgets(ins, INST_SIZE, stdin) == ins) {
-		char *space = strchr(ins, ' ');
-		int offset = (int) strtol(space + 1, NULL, 10);
+		char *space = truncate_string_before(ins, ' ');
+		int offset = char_to_int(*(space + 1));
 		switch (ins[0]) {
 			case 'f':
 				position += offset;
@@ -60,6 +81,7 @@ int main2() {
 				assert(0 && "Invalid instruction");
 				break;
 		}
+		free(space);
 	}
 
 	printf("%d\n", position * depth);
