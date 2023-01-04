@@ -2,7 +2,9 @@
 
 This projects contains puzzles (broken C codes) that you have to solve using your debugger.
 
-The original puzzles are borrowed from [Advent-Of-Code 2021](https://adventofcode.com/2021). The puzzles are from Day-01 to Day 10 and solutions are then broken, you must fix them and check if your output match the one in `output` file.
+The original puzzles are borrowed from [Advent-Of-Code 2021](https://adventofcode.com/2021). The puzzles are from Day-01 to Day 10 with broken solution, your goal is to fix them.
+
+> Note: Day-01 to Day-04 and Day-09 have both Part-1 and Part-2, rest have only Part-1. Because in some days, the difference between both parts's solution were only one or two lines, so for them, we skipped Part-2.
 
 This is provided free and open-source, and for purpose of learning and getting fimiliar with debuggers.
 
