@@ -14,15 +14,17 @@ This is provided free and open-source, and for purpose of learning and getting f
 ## How to play
 
 1. Go to the directory of level you want to play
-```
+```bash
 cd 01
 ```
+
 2. Then compile the program (if you want to do part-1 than flag `-DPART1`):
-```
+```bash
 gcc -DPART1 main.c
 ```
+
 3. Fire-up your debugger, for lldb:
-```
+```bash
 # Open lldb and load the executable
 lldb ./a.out
 ...
@@ -33,10 +35,12 @@ lldb ./a.out
 (lldb) run
 ```
 For gdb:
+```bash
+# TODO
 ```
-TODO
-```
+
 4. Find out what wrong with solutions and fix the C code.
+
 5. Cross-check your output with one in `output` file. Output file will as:
 ```
 <some-number> (example, part-1)
