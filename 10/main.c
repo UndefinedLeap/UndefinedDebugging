@@ -20,7 +20,7 @@ int cmp_u64(const void *left, const void *right) {
 	return 1;
 }
 
-int main() {
+int main1() {
 	char line_buffer[LINE_CAPACITY];
 
 	char closures[128] = {'\0'};
@@ -111,12 +111,16 @@ int main() {
 		lines_count += 1;
 	}
 
-#ifdef PART1
 	printf("%"PRIu64"\n", total_syntax_error_score);
-#else
-	qsort(line_scores, lines_count, sizeof(uint64_t), cmp_u64);
-	printf("%"PRIu64"\n", line_scores[lines_count / 2]);
-#endif
 
+	return 0;
+}
+
+int main(){
+#ifdef PART1
+	main1();
+#else
+	printf("There no part-2!");
+#endif
 	return 0;
 }

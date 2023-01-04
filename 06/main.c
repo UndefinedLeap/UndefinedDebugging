@@ -9,7 +9,7 @@
 #define LINE_BUFFER_CAPACITY 1000
 #define LF_MAX 9
 
-int main() {
+int main1() {
 	char line_buffer[LINE_BUFFER_CAPACITY];
 	uint64_t lanternfish[LF_MAX] = {0};
 
@@ -42,11 +42,7 @@ int main() {
 		endptr = NULL;
 	}
 
-#ifdef PART1
 	const int days = 80;
-#else
-	const int days = 256;
-#endif
 
 	// Model lanternfish' growth rate.
 	for (int day = 0; day < days; ++day) {
@@ -68,5 +64,14 @@ int main() {
 
 	printf("%lu\n", lanternfish_count);
 
+	return 0;
+}
+
+int main() {
+#ifdef PART1
+	main1();
+#else
+	printf("There no part-2!");
+#endif
 	return 0;
 }

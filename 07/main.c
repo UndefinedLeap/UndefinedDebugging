@@ -11,7 +11,7 @@
 #define LINE_BUFFER_CAPACITY 10000
 #define CRAB_CAPACITY 1200
 
-int main() {
+int main1() {
 	char line_buffer[LINE_BUFFER_CAPACITY];
 	int crabs[CRAB_CAPACITY] = {0};
 	int crabs_count = 0;
@@ -67,12 +67,7 @@ int main() {
 		for (int i = 0; i < crabs_count; ++i) {
 			const int c = crabs[i];
 			const uint64_t change = (uint64_t) ((c >= chosen) ? (c - chosen) : (chosen - c));
-
-#ifdef PART1
 			fuel_cost += change;
-#else
-			fuel_cost += change * (change + 1) / 2;
-#endif
 		}
 
 		if (fuel_cost < min_fuel_cost) {
@@ -82,5 +77,14 @@ int main() {
 
 	printf("%" PRIu64 "\n", min_fuel_cost);
 
+	return 0;
+}
+
+int main(){
+#ifdef PART1
+	main1();
+#else
+	printf("There no part-2!");
+#endif
 	return 0;
 }

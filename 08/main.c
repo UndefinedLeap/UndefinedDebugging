@@ -42,7 +42,7 @@ Pattern scan_next_pattern(const char *str, char **endptr) {
 	return pattern;
 }
 
-int main() {
+int main1() {
 	char line_buffer[LINE_CAPACITY];
 
 	Pattern entries[ENTRY_CAPACITY][14];
@@ -78,4 +78,13 @@ int main() {
 	printf("%d\n", appearance);
 
 	return 0;
+}
+
+int main() {
+#ifdef PART1
+    main1();
+#else
+    printf("There no part-2!");
+#endif
+    return 0;
 }

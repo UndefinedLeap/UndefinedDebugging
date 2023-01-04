@@ -24,7 +24,7 @@ void ocean_floor_log(const int *ocean_floor, int max_x, int max_y) {
 	putchar('\n');
 }
 
-int main() {
+int main1() {
 	char line_buffer[LINE_BUFFER_SIZE];
 	int lines[LINES_CAPACITY][4] = {0};
 	size_t lines_count = 0;
@@ -79,11 +79,9 @@ int main() {
 		int y2 = lines[i][3];
 		// printf("%d..%d -> %d..%d\n", x1, y1, x2, y2);
 
-#ifdef PART1
 		if (x1 != x2 && y1 != y2) {
 			continue;
 		}
-#endif
 
 /// Compare x and y and evaluate to -1, 0, and 1 if x < y, x == y, and x > y respectively.
 #define CMP(x, y) ((x == y) ? 0 : ((x < y) ? -1 : 1))
@@ -116,4 +114,13 @@ int main() {
 	printf("%d\n", count);
 
 	return 0;
+}
+
+int main() {
+#ifdef PART1
+    main1();
+#else
+    printf("There no part-2!");
+#endif
+    return 0;
 }

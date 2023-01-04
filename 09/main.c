@@ -100,7 +100,7 @@ void floor_log(const int *floor, const int floor_x, const int floor_y) {
 	printf("\n\n");
 }
 
-int main() {
+int main1() {
 	char line_buffer[LINE_CAPACITY];
 
 	int floor_x = 0;
@@ -125,12 +125,7 @@ int main() {
 		floor_y += 1;
 	}
 
-#ifdef PART1
 	int sum_of_risk_levels = 0;
-#else
-	PriorityQueue pq[1];
-	pq_new(pq);
-#endif
 
 	for (int y = 0; y < floor_y; ++y) {
 		for (int x = 0; x < floor_x; ++x) {
@@ -151,9 +146,62 @@ int main() {
 			if (lower_neighbors != 0)
 				continue;
 
-#ifdef PART1
 			sum_of_risk_levels += floor[idx(y, x, floor_x)] + 1;
-#else
+		}
+	}
+
+	printf("%d\n", sum_of_risk_levels);
+
+	return 0;
+}
+
+int main2() {
+	char line_buffer[LINE_CAPACITY];
+
+	int floor_x = 0;
+	int floor_y = 0;
+	int floor[FY * FX];
+
+	for (size_t i = 0; i < FY * FX; ++i) {
+		floor[i] = INT_MAX;
+	}
+
+	size_t linear_index = 0;
+
+	while (fgets(line_buffer, LINE_CAPACITY, stdin) == line_buffer) {
+		floor_x = 0;
+
+		for (size_t x = 0; line_buffer[x] >= '0' && line_buffer[x] <= '9'; ++x) {
+			floor[linear_index] = line_buffer[x] - '0';
+			linear_index += 1;
+			floor_x += 1;
+		}
+
+		floor_y += 1;
+	}
+
+	PriorityQueue pq[1];
+	pq_new(pq);
+
+	for (int y = 0; y < floor_y; ++y) {
+		for (int x = 0; x < floor_x; ++x) {
+			int lower_neighbors = 0;
+
+#define TRY_INCREMENT(nx, ny)                                                                      \
+	if (nx >= 0 && nx < floor_x && ny >= 0 && ny < floor_y &&                                      \
+		floor[idx(ny, nx, floor_x)] <= floor[idx(y, x, floor_x)])                                  \
+		lower_neighbors += 1;
+
+			TRY_INCREMENT(x - 1, y);
+			TRY_INCREMENT(x + 1, y);
+			TRY_INCREMENT(x, y - 1);
+			TRY_INCREMENT(x, y + 1);
+
+#undef TRY_INCREMENT
+
+			if (lower_neighbors != 0)
+				continue;
+
 			int *new_floor = (int *) malloc((size_t) (floor_x * floor_y) * sizeof(int));
 			floor_copy((const int *) floor, floor_x, floor_y, new_floor);
 
@@ -163,13 +211,9 @@ int main() {
 
 			pq_insert(pq, basin_size);
 			// pq_log(pq);
-#endif
 		}
 	}
 
-#ifdef PART1
-	printf("%d\n", sum_of_risk_levels);
-#else
 	int sizes_multiple = 1;
 
 	for (size_t i = 0; i < 3; ++i) {
@@ -177,7 +221,15 @@ int main() {
 	}
 
 	printf("%d\n", sizes_multiple);
-#endif
 
+	return 0;
+}
+
+int main(){
+#ifdef PART1
+	main1();
+#else
+	main2();
+#endif
 	return 0;
 }
